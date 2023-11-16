@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Recipe Book</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      background-image: url('https://via.placeholder.com/150');
+      background-size: cover;
+      background-position: center;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #ff6600;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 3em;
+      margin-top: 100px;
+      color: #fff;
+    }
+    p {
+      font-size: 1.2em;
+    }
+    .container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      display: none;
+    }
+    .enter-button {
+      background-color: #8a2be2;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 20px;
+    }
+    .enter-button:hover {
+      background-color: #7a26a5;
+    }
+    .recipe-options {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .recipe-option {
+      background-color: #8a2be2;
+      color: #fff;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-size: 1.5em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 10px;
+    }
+    .recipe-option:hover {
+      background-color: #7a26a5;
+    }
+    .recipe-details {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      text-align: left;
+      color: #333;
+    }
+    .recipe-details h2 {
+      color: #8a2be2;
+      margin-bottom: 15px;
+    }
+    .recipe-content {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome To Our Digital Recipe Book</h1>
+    <p>Explore delightful recipes from around the world!</p>
+  </header>
+
+  <div class="container" id="recipeOptions">
+    <h2>Choose a Category</h2>
+    <div class="recipe-options">
+      <div class="recipe-option" onclick="showCategory('Breakfast')">Breakfast Recipes</div>
+      <div class="recipe-option" onclick="showCategory('Lunch')">Lunch Recipes</div>
+      <div class="recipe-option" onclick="showCategory('Dinner')">Dinner Recipes</div>
+    </div>
+  </div>
+
+  <button class="enter-button" onclick="showRecipeOptions()">ENTER</button>
+
+  <div class="recipe-details" id="breakfastRecipes">
+    <h2>Breakfast Recipes</h2>
+    <!-- Placeholder breakfast recipe options -->
+    <div class="recipe-option" onclick="showRecipeDetails('Eggs')">Eggs</div>
+    <div class="recipe-option" onclick="showRecipeDetails('Pancakes')">Pancakes</div>
+    <div class="recipe-option" onclick="showRecipeDetails('Oatmeal')">Oatmeal</div>
+    <div class="recipe-option" onclick="showRecipeDetails('Smoothie')">Smoothie</div>
+  </div>
+
+  <div class="recipe-details" id="lunchRecipes" style="display: none;">
+    <h2>Lunch Recipes</h2>
+    <!-- Placeholder lunch recipe options -->
+    <div class="recipe-option" onclick="showRecipeDetails('Sandwich')">Sandwich</div>
+    <div class="recipe-option" onclick="showRecipeDetails('Salad')">Salad</div>
+    <div class="recipe-option" onclick="showRecipeDetails('Burger')">Burger</div>
+    <div class="recipe-option" onclick="showRecipeDetails('Soup')">Soup</div>
+  </div>
+
+  <div class="recipe-details" id="dinnerRecipes" style="display: none;">
+    <h2>Dinner Recipes</h2>
+    <!-- Placeholder dinner recipe options -->
+    <div class="recipe-option" onclick="showRecipeDetails('Steak')">Steak</div>
+    <div class="recipe-option" onclick="showRecipeDetails('Pasta')">Pasta</div>
+    <div class="recipe-option" onclick="showRecipeDetails('Fish')">Fish</div>
+    <div class="recipe-option" onclick="showRecipeDetails('Curry')">Curry</div>
+  </div>
+
+  <div class="recipe-details" id="recipeDetails">
+    <h2>Recipe Details</h2>
+    <div id="recipeContent"></div>
+  </div>
+
+  <script>
+    function showRecipeOptions() {
+      var recipeOptions = document.getElementById('recipeOptions');
+      recipeOptions.style.display = 'block';
+    }
+
+    function showCategory(category) {
+      var breakfastRecipes = document.getElementById('breakfastRecipes');
+      var lunchRecipes = document.getElementById('lunchRecipes');
+      var dinnerRecipes = document.getElementById('dinnerRecipes');
+      var recipeDetails = document.getElementById('recipeDetails');
+      var recipeContent = document.getElementById('recipeContent');
+
+      if (category === 'Breakfast') {
+        breakfastRecipes.style.display = 'block';
+        lunchRecipes.style.display = 'none';
+        dinnerRecipes.style.display = 'none';
+        recipeDetails.style.display = 'none';
+        recipeContent.innerHTML = '';
+      } else if (category === 'Lunch') {
+        breakfastRecipes.style.display = 'none';
+        lunchRecipes.style.display = 'block';
+        dinnerRecipes.style.display = 'none';
+        recipeDetails.style.display = 'none';
+        recipeContent.innerHTML = '';
+      } else if (category === 'Dinner') {
+        breakfastRecipes.style.display = 'none';
+        lunchRecipes.style.display = 'none';
+        dinnerRecipes.style.display = 'block';
+        recipeDetails.style.display = 'none';
+        recipeContent.innerHTML = '';
+      }
+    }
+
+    function showRecipeDetails(recipe) {
+      var recipeDetails = document.getElementById('recipeDetails');
+      var recipeContent = document.getElementById('recipeContent');
+
+      if (recipe === 'Eggs') {
+        recipeContent.innerHTML = "<h3>Eggs</h3><p>Ingredients: Eggs, Salt, Pepper</p><p>Preparation: Beat eggs, add salt and pepper, cook in a pan.</p>";
+      } else if (recipe === 'Pancakes') {
+        recipeContent.innerHTML = "<h3>Pancakes</h3><p>Ingredients: Flour, Milk, Eggs, Baking Powder</p><p>Preparation: Mix ingredients, pour batter on a griddle, cook until golden brown.</p>";
+      } else if (recipe === 'Oatmeal') {
+        recipeContent.innerHTML = "<h3>Oatmeal</h3><p>Ingredients: Oats, Water/Milk, Sweetener/Fruits</p><p>Preparation: Boil oats in water or milk, add sweetener or fruits as desired.</p>";
+      } // Add similar else if blocks for other recipes
+
+      recipeDetails.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
